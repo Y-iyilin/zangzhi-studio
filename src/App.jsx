@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 
 const assetBase = import.meta.env.BASE_URL;
 const media = (name) => `${assetBase}media/${name}`;
-const downloadUrl = `${assetBase}downloads/ZangzhiStudio-Setup-1.0.10.exe`;
+const downloadUrl = "https://github.com/Y-iyilin/zangzhi-studio/releases/download/v1.0.11/ZangzhiStudio-Setup-1.0.11.exe";
+const guideUrl = `${assetBase}docs/ZangzhiStudio-Installation-Guide.md`;
 
 const workflow = [
   ["01", "在软件里打开抖音", "使用同一个内置浏览器完成登录、浏览收藏夹和打开视频。采集、下载等命令直接作用于当前页面，不需要在多个窗口之间复制链接。"],
@@ -26,7 +27,7 @@ const faqs = [
   ["AI 笔记与普通视频摘要有什么不同？", "普通摘要只压缩内容；藏知 Studio 的笔记会解释概念、整理因果和方法、吸收评论中的补充与反例，并对真实性、时效性、适用条件和风险进行区分。"],
   ["我的登录、API Key 和文件存在哪里？", "登录状态保存在软件内置浏览器环境中，API Key 和设置保存在本机；视频、评论、转写与笔记写入你指定的工作目录，不会写进导出的笔记、Excel 或运行日志。"],
   ["可以处理任何视频吗？", "软件只处理你已登录、有权访问且页面能够正常播放的内容，不绕过验证码、版权保护、付费权限或平台访问限制。使用时仍需遵守平台规则、版权和隐私要求。"],
-  ["安装需要什么环境？", "桌面端支持 64 位 Windows 10/11。安装包提供主程序；高质量本地转写需要可用的 Python 3.11、PyAV 与 faster-whisper 环境，模型生成则需要用户自己的兼容 API。"],
+  ["安装需要什么环境？", "桌面端支持 64 位 Windows 10/11，主程序自带 .NET 运行时。进入设置并运行“一键配置本机环境”，软件会检查 WebView2、Python 3.11、PyAV 与 faster-whisper；AI 笔记仍需用户填写自己的兼容 API。"],
 ];
 
 const productScenes = [
@@ -136,6 +137,7 @@ export function App() {
           <button className={active === "browser" ? "active" : ""} onClick={() => go("browser")}>产品导览</button>
           <button className={active === "privacy" ? "active" : ""} onClick={() => go("privacy")}>本地与隐私</button>
           <button className={active === "faq" ? "active" : ""} onClick={() => go("faq")}>常见问题</button>
+          <a href={guideUrl} target="_blank" rel="noreferrer">安装指南</a>
         </div>
         <a className="nav-download" href={downloadUrl} download>下载</a>
       </nav>
@@ -151,7 +153,7 @@ export function App() {
             <a className="primary" href={downloadUrl} download>下载 Windows 版 <span aria-hidden="true">↓</span></a>
             <button className="secondary" onClick={() => go("workflow")}>查看完整流程 <span aria-hidden="true">›</span></button>
           </div>
-          <p className="release">版本 1.0.10 · Windows 10/11 64 位 · 本地优先</p>
+          <p className="release">版本 1.0.11 · Windows 10/11 64 位 · 本地优先</p>
         </div>
       </section>
 
@@ -259,7 +261,8 @@ export function App() {
         <h2>让收藏，真正成为你的知识。</h2>
         <p>从一个真实视频开始，完整保留来源、讨论、转写和判断。</p>
         <a className="primary" href={downloadUrl} download>下载藏知 Studio <span aria-hidden="true">↓</span></a>
-        <small>版本 1.0.10 · 安装包约 51 MB · Windows 10/11 64 位</small>
+        <a className="guide-action" href={guideUrl} target="_blank" rel="noreferrer">查看安装与环境配置指南</a>
+        <small>版本 1.0.11 · Windows 10/11 64 位 · 支持一键配置转写环境</small>
       </section>
 
       <footer>
